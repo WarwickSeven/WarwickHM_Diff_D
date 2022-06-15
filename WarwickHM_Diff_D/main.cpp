@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
-#include <cmath>
 
 int32_t getRandomNum(const int32_t min, const int32_t max) {
     const static auto seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -23,7 +22,7 @@ void ADC(const std::vector<double> &v1, std::vector<int> &v2) {
     transform(v1.begin(), v1.end(), v2.begin(), [](double i){ return floor(i);});
 }
 
-double ADCdeviatioin(const std::vector<double> &v1, std::vector<int> &v2) {
+double ADCdeviatioin(const std::vector<double> &v1, const std::vector<int> &v2) {
     double result = 0;
     for (int i = 0; i < v1.size(); ++i) {
         result += pow((v1[i]-v2[i]),2);
@@ -34,7 +33,7 @@ double ADCdeviatioin(const std::vector<double> &v1, std::vector<int> &v2) {
 int main() {
     std::vector<double> aSignal(100);
     std::vector<int> dSignal(aSignal.size());
-    generate (aSignal.begin(), aSignal.end(), [](){return (getRandomNum(100, 10000)/100.00);});
+    generate(aSignal.begin(), aSignal.end(), [](){return (getRandomNum(100, 10000)/100.00);});
     ADC(aSignal, dSignal);
     printContainer(aSignal);
     printContainer(dSignal);
