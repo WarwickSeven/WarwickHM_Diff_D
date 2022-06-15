@@ -9,8 +9,7 @@ template <typename T> void printContainer(const T &cnt) {
     std::cout << '\n' << "Capacity: " << cnt.capacity() << std::endl;;
  }
 
-template <typename T>
-void insert_sorted(std::vector<T> &v, const T &i) {
+template <typename T> void insert_sorted(std::vector<T> &v, const T &i) {
     v.insert(lower_bound(v.begin(), v.end(), i), i);
     v.shrink_to_fit();
 }
